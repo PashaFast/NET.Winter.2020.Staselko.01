@@ -45,20 +45,18 @@ namespace NumbersExtension.Tests.NUnit
             return NumbersExtension.IsPalindrome(number);
         }
 
-        [TestCase(-1234321, ExpectedResult = true)]
-        [TestCase(-1111111, ExpectedResult = true)]
-        public bool IsPalindrome_NegativeNumbers_True(int number)
-        {
-            return NumbersExtension.IsPalindrome(number);
-        }
-
-        [TestCase(-123210, ExpectedResult = false)]
+      
         [TestCase(123421, ExpectedResult = false)]
         [TestCase(78, ExpectedResult = false)]
         public bool IsPalindrome_SomeNumbers_False(int number)
         {
             return NumbersExtension.IsPalindrome(number);
         }
+
+        [Test]
+        public void IsPalindrom_ArgumentOutOfRangeException_Less() =>
+            Assert.Throws<ArgumentOutOfRangeException>(() => NumbersExtension.IsPalindrome(-121),
+                message: "number cannot be negative");
 
     }
 }
