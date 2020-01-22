@@ -37,5 +37,28 @@ namespace NumbersExtension.Tests.NUnit
             Assert.Throws<ArgumentOutOfRangeException>(() => NumbersExtension.InsertNumberIntoAnother(8, 15, 0, 32),
                 message: "index must be less then 32");
 
+
+        [TestCase(1234321, ExpectedResult = true)]
+        [TestCase(1111111, ExpectedResult = true)]
+        public bool IsPalindrome_PositiveNumbers_True(int number)
+        {
+            return NumbersExtension.IsPalindrome(number);
+        }
+
+        [TestCase(-1234321, ExpectedResult = true)]
+        [TestCase(-1111111, ExpectedResult = true)]
+        public bool IsPalindrome_NegativeNumbers_True(int number)
+        {
+            return NumbersExtension.IsPalindrome(number);
+        }
+
+        [TestCase(-123210, ExpectedResult = false)]
+        [TestCase(123421, ExpectedResult = false)]
+        [TestCase(78, ExpectedResult = false)]
+        public bool IsPalindrome_SomeNumbers_False(int number)
+        {
+            return NumbersExtension.IsPalindrome(number);
+        }
+
     }
 }

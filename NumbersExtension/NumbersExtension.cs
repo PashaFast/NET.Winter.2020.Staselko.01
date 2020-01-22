@@ -50,5 +50,32 @@ namespace NumbersExtension
             int bitMask2 = ~(bitMaskTemp << i);
             return (numberSource & bitMask2) | bitMask1;
         }
+
+        /// <summary>
+        /// The method determines if the number is a palindrome.
+        /// </summary>
+        /// <param name="number">The number that we want to check on the palindrome.</param>
+        /// <returns>True-if the numer is palindrom, false - otherwise.</returns>
+        public static bool IsPalindrome(int number)
+        {
+            string strNumber = Math.Abs(number).ToString();
+            if (strNumber.Length > 1)
+            {
+                if (strNumber[0] == strNumber[strNumber.Length - 1])
+                {
+                    strNumber = strNumber.Substring(1, strNumber.Length - 2);
+                    number = Convert.ToInt32(strNumber);
+                    return IsPalindrome(number);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }
