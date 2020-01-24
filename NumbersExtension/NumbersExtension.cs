@@ -64,24 +64,28 @@ namespace NumbersExtension
                 throw new ArgumentOutOfRangeException(nameof(number), "cannot be negative");
             }
 
-            string strNumber = number.ToString();
-            if (strNumber.Length > 1)
-            {
-                if (strNumber[0] == strNumber[strNumber.Length - 1])
-                {
-                    strNumber = strNumber.Substring(1, strNumber.Length - 2);
-                    number = Convert.ToInt32(strNumber);
-                    return IsPalindrome(number);
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else
+            int temp = Reverse(number, 0);
+
+            if (temp == number)
             {
                 return true;
             }
+            else
+            {
+                return false;
+            }
+        }
+
+        private static int Reverse(int n, int temp)
+        {
+            if (n == 0)
+            {
+                return temp;
+            }
+
+            temp = (temp * 10) + (n % 10);
+
+            return Reverse(n / 10, temp);
         }
     }
 }

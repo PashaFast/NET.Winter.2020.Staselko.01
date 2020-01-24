@@ -4,7 +4,7 @@ using System;
 namespace NumbersExtension.Tests.NUnit
 {
     public class NumberExtensionTests
-    {
+    { 
         [TestCase(2728, 655, 3, 8, ExpectedResult = 2680)]
         [TestCase(554216104, 15, 0, 31, ExpectedResult = 15)]
         [TestCase(-55465467, 345346, 0, 31, ExpectedResult = 345346)]
@@ -40,6 +40,7 @@ namespace NumbersExtension.Tests.NUnit
 
         [TestCase(1234321, ExpectedResult = true)]
         [TestCase(1111111, ExpectedResult = true)]
+        [TestCase(1, ExpectedResult = true)]
         public bool IsPalindrome_PositiveNumbers_True(int number)
         {
             return NumbersExtension.IsPalindrome(number);
@@ -57,6 +58,28 @@ namespace NumbersExtension.Tests.NUnit
         public void IsPalindrom_ArgumentOutOfRangeException_Less() =>
             Assert.Throws<ArgumentOutOfRangeException>(() => NumbersExtension.IsPalindrome(-121),
                 message: "number cannot be negative");
+
+        [Test]
+        [Order(2)]
+        [Timeout(500)]
+        public void PossiblyVerySlowCode_WithTimeLessThan1000Milliseconds()
+        {
+            for (int source = 0; source < 1_000_000; source++)
+            {
+                NumbersExtension.IsPalindrome(source);
+            }
+        }
+
+        [Test]
+        [Order(1)]
+        [Timeout(2_000)]
+        public void PossiblyVerySlowCode_WithTimeLessThan25000Milliseconds()
+        {
+            for (int source = 0; source < 10_000_000; source++)
+            {
+                NumbersExtension.IsPalindrome(source);
+            }
+        }
 
     }
 }
