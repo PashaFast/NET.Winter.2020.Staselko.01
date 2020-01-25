@@ -63,17 +63,8 @@ namespace NumbersExtension
             {
                 throw new ArgumentOutOfRangeException(nameof(number), "cannot be negative");
             }
-
-            int temp = Reverse(number, 0);
-
-            if (temp == number)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            
+            return temp == Reverse(number, 0); // ?
         }
 
         private static int Reverse(int n, int temp)
